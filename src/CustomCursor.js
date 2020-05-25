@@ -3,6 +3,8 @@ import React, {useState, useEffect, useRef} from 'react';
 import {TweenMax} from 'gsap';
 import styled from 'styled-components';
 import {isMobile} from 'react-device-detect';
+import arrowLeftImage from './arrow-left.png';
+import arrowRightImage from './arrow-right.png';
 
 const CursorRoot = styled.div`
   position: fixed;
@@ -156,14 +158,14 @@ function CustomCursor() {
       document.removeEventListener('mouseup', handleMouseDown);
     };
   });
-  
+
   return (
     <CursorRoot>
       <CursorPointer ref={cursorPointerRef}>
         <CursorInner ref={cursorPointerInnerRef} />
         <CursorArrowContainer>
-          <CursorArrowLeft ref={cursorArrowLeftRef} src={'../arrow-left.png'} alt="left arrow" />
-          <CursorArrowRight ref={cursorArrowRightRef} src={'../arrow-right.png'} alt="right arrow" />
+          <CursorArrowLeft ref={cursorArrowLeftRef} src={arrowLeftImage} alt="left arrow" />
+          <CursorArrowRight ref={cursorArrowRightRef} src={arrowRightImage} alt="right arrow" />
         </CursorArrowContainer>
       </CursorPointer>
     </CursorRoot>
