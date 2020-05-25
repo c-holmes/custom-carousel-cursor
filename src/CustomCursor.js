@@ -1,9 +1,8 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import {TweenMax} from 'gsap';
 import styled from 'styled-components';
 import {isMobile} from 'react-device-detect';
-import {useMousePosition} from './useMousePosition';
 
 const CursorRoot = styled.div`
   position: fixed;
