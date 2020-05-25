@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/c-holmes.github.io/custom-carousel-cursor/static/css/main.5f361e03.chunk.css",
-    "main.js": "/c-holmes.github.io/custom-carousel-cursor/static/js/main.5930e34e.chunk.js",
-    "main.js.map": "/c-holmes.github.io/custom-carousel-cursor/static/js/main.5930e34e.chunk.js.map",
-    "runtime-main.js": "/c-holmes.github.io/custom-carousel-cursor/static/js/runtime-main.edbab784.js",
-    "runtime-main.js.map": "/c-holmes.github.io/custom-carousel-cursor/static/js/runtime-main.edbab784.js.map",
-    "static/js/2.144e6837.chunk.js": "/c-holmes.github.io/custom-carousel-cursor/static/js/2.144e6837.chunk.js",
-    "static/js/2.144e6837.chunk.js.map": "/c-holmes.github.io/custom-carousel-cursor/static/js/2.144e6837.chunk.js.map",
-    "index.html": "/c-holmes.github.io/custom-carousel-cursor/index.html",
-    "precache-manifest.90cd942f2f166271bedd0b16d9159471.js": "/c-holmes.github.io/custom-carousel-cursor/precache-manifest.90cd942f2f166271bedd0b16d9159471.js",
-    "service-worker.js": "/c-holmes.github.io/custom-carousel-cursor/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/c-holmes.github.io/custom-carousel-cursor/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.144e6837.chunk.js.LICENSE.txt": "/c-holmes.github.io/custom-carousel-cursor/static/js/2.144e6837.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/c-holmes.github.io/custom-carousel-cursor/static/media/logo.5d5d9eef.svg"
+    "main.css": "/custom-carousel-cursor/static/css/main.5f361e03.chunk.css",
+    "main.js": "/custom-carousel-cursor/static/js/main.ad20041b.chunk.js",
+    "main.js.map": "/custom-carousel-cursor/static/js/main.ad20041b.chunk.js.map",
+    "runtime-main.js": "/custom-carousel-cursor/static/js/runtime-main.8a2f3d50.js",
+    "runtime-main.js.map": "/custom-carousel-cursor/static/js/runtime-main.8a2f3d50.js.map",
+    "static/js/2.5b3407c3.chunk.js": "/custom-carousel-cursor/static/js/2.5b3407c3.chunk.js",
+    "static/js/2.5b3407c3.chunk.js.map": "/custom-carousel-cursor/static/js/2.5b3407c3.chunk.js.map",
+    "index.html": "/custom-carousel-cursor/index.html",
+    "precache-manifest.0d218bfc1fa6af3c317a5c2f37b44394.js": "/custom-carousel-cursor/precache-manifest.0d218bfc1fa6af3c317a5c2f37b44394.js",
+    "service-worker.js": "/custom-carousel-cursor/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/custom-carousel-cursor/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.5b3407c3.chunk.js.LICENSE.txt": "/custom-carousel-cursor/static/js/2.5b3407c3.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/custom-carousel-cursor/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.edbab784.js",
-    "static/js/2.144e6837.chunk.js",
+    "static/js/runtime-main.8a2f3d50.js",
+    "static/js/2.5b3407c3.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.5930e34e.chunk.js"
+    "static/js/main.ad20041b.chunk.js"
   ]
 }
