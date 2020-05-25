@@ -10,7 +10,6 @@ const CursorRoot = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  @include z-index(cursor);
   pointer-events: none;
 `;
 
@@ -21,6 +20,8 @@ const CursorPointer = styled.div`
   pointer-events: none;
   width: 50px;
   height: 50px;
+  top: -25px;
+  left: -25px;
 `;
 
 const CursorInner = styled.div`
@@ -59,46 +60,46 @@ const CursorArrowRight = styled(CursorArrow)`
   right: 20px;
 `;
 
-const SCREEN_LOCATION = {
+const SCREEN_SECTIONS = {
   CENTER: 'center',
   LEFT: 'left',
   RIGHT: 'right',
 }
-const SCREEN_LOCATION_VALUE = 0.25;
+const SCREEN_SECTIONS_START_VALUE = 0.25;
+const ARROW_TRANSFORM_DURATION = 0.5;
+const ARROW_OPACITY_DURATION = 0.166;
 
 function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
-  const [cursorScreenLocation, setCursorScreenLocation] = useState(SCREEN_LOCATION.CENTER);
+  const [cursorScreenLocation, setCursorScreenLocation] = useState(SCREEN_SECTIONS.CENTER);
   const prevCursorScreenLocationRef = useRef();
   const cursorPointerRef = useRef(null);
   const cursorPointerInnerRef = useRef(null);
   const cursorArrowLeftRef = useRef(null);
   const cursorArrowRightRef = useRef(null);
 
+  const animateArrow = (cursorArrowRef, fromX, toX, toOpacity) => {
+    TweenMax.fromTo(cursorArrowRef.current, ARROW_TRANSFORM_DURATION, {x:fromX}, {x:toX});
+    TweenMax.to(cursorArrowRef.current, ARROW_OPACITY_DURATION, {opacity:toOpacity});
+  };
+
   const determineCursorScreenLocation = (clientX) => {
     const width = window.innerWidth;
-    const isLeftSide = clientX < (width * SCREEN_LOCATION_VALUE);
-    const isRightSide = clientX > (width - (width * SCREEN_LOCATION_VALUE));
-    const prevCursorScreenLocation = prevCursorScreenLocationRef.current;
-    if(isLeftSide && cursorScreenLocation !== SCREEN_LOCATION.LEFT) {
-      setCursorScreenLocation(SCREEN_LOCATION.LEFT);
-      cursorArrowRightRef.current.style.opacity = 0;
-      TweenMax.fromTo(cursorArrowLeftRef.current, 0.5, {x:20}, {x:0})
-      TweenMax.to(cursorArrowLeftRef.current, 0.166, {opacity:1})
-    } else if (isRightSide && cursorScreenLocation !== SCREEN_LOCATION.RIGHT) {
-      setCursorScreenLocation(SCREEN_LOCATION.RIGHT);
-      cursorArrowLeftRef.current.style.opacity = 0;
-      TweenMax.fromTo(cursorArrowRightRef.current, 0.5, {x:-20}, {x:0})
-      TweenMax.to(cursorArrowRightRef.current, 0.166, {opacity:1})
-    } else if (!isLeftSide && !isRightSide && cursorScreenLocation !== SCREEN_LOCATION.CENTER) {
-      if (prevCursorScreenLocation === SCREEN_LOCATION.LEFT) {
-        TweenMax.fromTo(cursorArrowLeftRef.current, 0.5, {x:0}, {x:20})
-        TweenMax.to(cursorArrowLeftRef.current, 0.166, {opacity:0})
+    const isLeftSide = clientX < (width * SCREEN_SECTIONS_START_VALUE);
+    const isRightSide = clientX > (width - (width * SCREEN_SECTIONS_START_VALUE));
+    if(isLeftSide && cursorScreenLocation !== SCREEN_SECTIONS.LEFT) {
+      setCursorScreenLocation(SCREEN_SECTIONS.LEFT);
+      animateArrow(cursorArrowLeftRef, 20, 0, 1);
+    } else if (isRightSide && cursorScreenLocation !== SCREEN_SECTIONS.RIGHT) {
+      setCursorScreenLocation(SCREEN_SECTIONS.RIGHT);
+      animateArrow(cursorArrowRightRef, -20, 0, 1);
+    } else if (!isLeftSide && !isRightSide && cursorScreenLocation !== SCREEN_SECTIONS.CENTER) {
+      if (prevCursorScreenLocationRef.current === SCREEN_SECTIONS.LEFT) {
+        animateArrow(cursorArrowLeftRef, 0, 20, 0);
       } else {
-        TweenMax.fromTo(cursorArrowRightRef.current, 0.5, {x:0}, {x:-20})
-        TweenMax.to(cursorArrowRightRef.current, 0.166, {opacity:0})
+        animateArrow(cursorArrowRightRef, 0, -20, 0);
       }
-      setCursorScreenLocation(SCREEN_LOCATION.CENTER);
+      setCursorScreenLocation(SCREEN_SECTIONS.CENTER);
     }
   };
 
@@ -111,52 +112,51 @@ function CustomCursor() {
     TweenMax.killTweensOf(cursorPointerRef);
     TweenMax.set(cursorPointerRef.current, { force3D: true, x: event.clientX, y: event.clientY });
     determineCursorScreenLocation(event.clientX);
-  }
+  };
 
   const handleMouseDown = () => {
-    TweenMax.to(cursorPointerInnerRef.current, 0.166, {scale:0.75})
-  }
+    TweenMax.to(cursorPointerInnerRef.current, 0.166, {scale:0.75});
+  };
 
   const handleMouseUp = () => {
-    TweenMax.to(cursorPointerInnerRef.current, 0.166, {scale:1})
-  }
+    TweenMax.to(cursorPointerInnerRef.current, 0.166, {scale:1});
+  };
 
   const handleMouseEnter = () => {
-    setIsVisible(true)
-  }
+    setIsVisible(true);
+  };
 
   const handleMouseLeave = () => {
-    setIsVisible(false)
-  }
+    setIsVisible(false);
+  };
 
   useEffect(() => {
     if (!isMobile) {
       prevCursorScreenLocationRef.current = cursorScreenLocation;
-      window.addEventListener('mousemove', handleMouseMove, false);
-      window.addEventListener('mouseenter', handleMouseEnter, false);
-      window.addEventListener('mouseleave', handleMouseLeave, false);
-      window.addEventListener('mousedown', handleMouseDown, false);
-      window.addEventListener('mouseup', handleMouseUp, false);
+      document.addEventListener('mousemove', handleMouseMove, false);
+      document.addEventListener('mouseenter', handleMouseEnter, false);
+      document.addEventListener('mouseleave', handleMouseLeave, false);
+      document.addEventListener('mousedown', handleMouseDown, false);
+      document.addEventListener('mouseup', handleMouseUp, false);
+
+      if (isVisible) {
+        cursorPointerRef.current.style.opacity = 1;
+        document.body.style.cursor = 'none';
+      } else {
+        cursorPointerRef.current.style.opacity = 0;
+        document.body.style.cursor = 'default';
+      }
     }
+
     return function cleanup() {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseenter', handleMouseEnter);
-      window.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseDown);
     };
   });
   
-  if (cursorPointerRef.current !== null) {
-    if (isVisible) {
-      cursorPointerRef.current.style.opacity = 1;
-      document.body.style.cursor = 'none';
-    } else {
-      cursorPointerRef.current.style.opacity = 0;
-      document.body.style.cursor = 'default';
-    }
-  }
-
   return (
     <CursorRoot>
       <CursorPointer ref={cursorPointerRef}>
