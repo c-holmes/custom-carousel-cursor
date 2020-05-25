@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1c99870f8404c698e8e278a26d201919",
+    "revision": "ffbf2df4cd910f4333d8db739ce8611c",
     "url": "/custom-carousel-cursor/index.html"
   },
   {
-    "revision": "e018a3f34b5be85e49b4",
+    "revision": "7a8775269ca62ea4f643",
     "url": "/custom-carousel-cursor/static/css/main.5f361e03.chunk.css"
   },
   {
-    "revision": "b2e06f43dcecfdb5cdae",
-    "url": "/custom-carousel-cursor/static/js/2.5b3407c3.chunk.js"
+    "revision": "7be78697e41d4941458e",
+    "url": "/custom-carousel-cursor/static/js/2.4cda2cd1.chunk.js"
   },
   {
     "revision": "e26031d138ff8b848553a2183d3fd3f6",
-    "url": "/custom-carousel-cursor/static/js/2.5b3407c3.chunk.js.LICENSE.txt"
+    "url": "/custom-carousel-cursor/static/js/2.4cda2cd1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e018a3f34b5be85e49b4",
-    "url": "/custom-carousel-cursor/static/js/main.ad20041b.chunk.js"
+    "revision": "7a8775269ca62ea4f643",
+    "url": "/custom-carousel-cursor/static/js/main.0285f0b4.chunk.js"
   },
   {
     "revision": "653b0d81008b633198d0",
